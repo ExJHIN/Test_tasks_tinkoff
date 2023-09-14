@@ -12,10 +12,11 @@
     <input type="text" id="search" placeholder="Поиск по имени...">
 
     <div class="buttons">
-        <button onclick="sortTable('name')">Имя</button>
-        <button onclick="sortTable('age')">Возраст</button>
-        <button onclick="sortTable('gender')">Пол</button>
+        <button data-column="name" onclick="sortTable('name')">Имя</button>
+        <button data-column="age" onclick="sortTable('age')">Возраст</button>
+        <button data-column="gender" onclick="sortTable('gender')">Пол</button>
     </div>
+
 
     <table id="users">
         <thead>

@@ -1,3 +1,4 @@
+let currentSortedColumn = null;
 const users = [
     {name: "Анна", age: 25, gender: "Женский"},
     {name: "Иван", age: 30, gender: "Мужской"},
@@ -43,6 +44,16 @@ function sortTable(column) {
     });
 
     rows.forEach(row => table.tBodies[0].appendChild(row));
+
+    // Убрать текущий активный класс
+    if (currentSortedColumn) {
+        document.querySelector(`button[data-column="${currentSortedColumn}"]`).classList.remove('active');
+    }
+
+    // Добавить активный класс на выбранную кнопку
+    const clickedButton = document.querySelector(`button[data-column="${column}"]`);
+    clickedButton.classList.add('active');
+    currentSortedColumn = column;
 }
 
 function generateTableContent() {
