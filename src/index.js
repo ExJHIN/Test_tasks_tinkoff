@@ -8,18 +8,18 @@ const users = [
 ];
 
 document.getElementById('search').addEventListener('input', function(e) {
-    let searchValue = e.target.value.toLowerCase();
-    let rows = document.querySelectorAll("#users tbody tr");
+    const searchValue = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll("#users tbody tr");
 
     rows.forEach(row => {
-        let name = row.querySelector("td:first-child").textContent.toLowerCase();
+        const name = row.querySelector("td:first-child").textContent.toLowerCase();
         row.style.display = name.includes(searchValue) ? "" : "none";
     });
 });
 
 function sortTable(column) {
-    let table = document.getElementById("users");
-    let rows = Array.from(table.rows).slice(1);
+    const table = document.getElementById("users");
+    const rows = Array.from(table.rows).slice(1);
 
     rows.sort((a, b) => {
         let A, B;
@@ -33,14 +33,11 @@ function sortTable(column) {
                 B = +b.cells[1].innerText;
                 break;
             case 'gender':
-                A = a.cells[2].innerText;
-                B = b.cells[2].innerText;
+                A = a.cells[2].innerText;   // Обновляем индекс ячейки
+                B = b.cells[2].innerText;   // Обновляем индекс ячейки
                 break;
         }
-
-        if (A < B) return -1;
-        if (A > B) return 1;
-        return 0;
+        return (A < B ? -1 : (A > B ? 1 : 0));
     });
 
     rows.forEach(row => table.tBodies[0].appendChild(row));
@@ -72,7 +69,4 @@ function generateTableContent() {
     });
 }
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    generateTableContent();
-});
+document.addEventListener("DOMContentLoaded", generateTableContent);
